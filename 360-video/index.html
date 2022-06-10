@@ -3,10 +3,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
-      // A-Frame 'loaded' event, to load assets
+      // for detecting when asset has loaded
       AFRAME.registerComponent('asset-loader', {
         init: function () {
-          console.log( 'asset-loader initiated' ) ;
           this.el.addEventListener( 'loaded', () => {
             console.log( 'assets loaded' ) ;
             document.querySelector('#sky').play();
@@ -14,6 +13,7 @@
         }
       });
 
+      // for detecting when interface was clicked
       AFRAME.registerComponent('on-click', {
         init: function () {
           this.el.addEventListener( 'click', () => {
@@ -35,9 +35,9 @@
             A propriedade "timeout" abaixo é o tempo que a interface espera até carregar o vídeo
       -->
       
-        <a-assets asset-loader timeout="10000">
+        <a-assets timeout="10000">
           <!-- <video id="video" loop="true" src="../videos/falls-low-360.mp4"> </video> -->
-          <video id="video-360" autoplay="true" loop="true" src="../videos/falls-low-360.mp4"> </video>
+          <video asset-loader id="video-360" autoplay="true" loop="true" src="../videos/london-bridge-360.mp4"> </video>
         </a-assets> 
      
 
