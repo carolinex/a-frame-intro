@@ -7,6 +7,9 @@
     <meta name="description" content="360 Video - A-Frame">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
+        // Registra o evento 'play-on-click',
+        // para que o vídeo comece a tocar assim que a pessoa toca na tela
+        // (Chrome tem um bloqueio de autoplay nos celulares)
         AFRAME.registerComponent('play-on-click', {
             init: function () {
                 this.onClick = this.onClick.bind(this);
@@ -22,17 +25,44 @@
                 if (!videoEl) { return; }
                 this.el.object3D.visible = true;
                 document.querySelector('#cursor').setAttribute('visible', true);
-                document.querySelector('#message').setAttribute('visible', false);
-                
+                // document.querySelector('#message').setAttribute('visible', false);
                 videoEl.play();
             },
 
+        });
+
+        AFRAME.registerComponent('hide-on-play', {
+            schema: {type: 'selector'},
+            init: function () {
+                this.onPlaying = this.onPlaying.bind(this);
+                this.onPause = this.onPause.bind(this);
+                this.el.object3D.visible = !this.data.playing;
+            },
+            play: function () {
+                if (this.data) {
+                this.data.addEventListener('playing', this.onPlaying);
+                this.data.addEventListener('pause', this.onPause);
+                }
+            },
+            pause: function () {
+                if (this.data) {
+                this.data.removeEventListener('playing', this.onPlaying);
+                this.data.removeEventListener('pause', this.onPause);
+                }
+            },
+            onPlaying: function (evt) {
+                this.el.object3D.visible = false;
+            },
+            onPause: function (evt) {
+                this.el.object3D.visible = true;
+            }
         });
     </script>
 
   </head>
   <body>
     <a-scene>
+      <!-- Pré-carregamento do vídeo -->
       <a-assets>
         <video id="video-360" preload="auto"
                src="../videos/london-bridge-360.mp4"
@@ -40,6 +70,7 @@
                crossOrigin="anonymous"></video>
       </a-assets>
 
+      <!-- Uma esfera 3D onde o vídeo 360 é projetado -->
       <a-videosphere 
         id="videosphere"
         src="#video-360" 
@@ -48,11 +79,14 @@
         visible="false">
       </a-videosphere>
 
+      <!-- Podemos colocar um elemento vinculado à câmera, para que esteja 
+           sempre visível -->
       <a-camera>
         <!-- mensagem inicial -->
         <a-entity
           id="message"
           position="0 0 -1.5"
+          hide-on-play="#video-360"
           text="align: center;
                 width: 6;
                 wrapCount: 100;
@@ -67,6 +101,7 @@
           raycaster="objects:.collidable"
           visible="false">
         </a-cursor>
+        
       </a-camera>
     </a-scene>
   </body>
