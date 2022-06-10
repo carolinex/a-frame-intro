@@ -3,23 +3,27 @@
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
 
+      function labelVisibility(labelElements, state){
+        labelElements.forEach((elem)=>{
+          // console.log('in-view', labelElements);
+          elem.setAttribute("visible", state);
+        });
+      }
       // registra o comportamento 'event-in-view'
       // quando você adiciona essa propriedade a um elemento do a-frame,
       // ele irá exibir qualquer elemento interno com a classe 'label'
       // se o cursor estiver sobre o elemento
       AFRAME.registerComponent('event-in-view', {
         init: function () {
-          let label = this.el.querySelector('.label');
+          let labelElements = this.el.querySelectorAll('.label');
 
           this.el.addEventListener('mouseenter', function (evt) {
-            console.log('in-view', label);
-            label.setAttribute("visible", true);
+            labelVisibility(labelElements, true);
           });
 
 
           this.el.addEventListener('mouseleave', function (evt) {
-            console.log('leave-view', label);
-            label.setAttribute("visible", false);
+            labelVisibility(labelElements, false);
           });
         }
       });
@@ -78,7 +82,7 @@
         <a-plane
           class="label"
           color="black"
-          visible="true"
+          visible="false"
           width="5" height="1" position="0 0 -11"
           material="color:black;opacity:1">
         </a-plane>
