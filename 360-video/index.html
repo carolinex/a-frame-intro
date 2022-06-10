@@ -6,6 +6,7 @@
       // A-Frame 'loaded' event, to load assets
       AFRAME.registerComponent('asset-loader', {
         init: function () {
+          console.log( 'asset-loader initiated' ) ;
           this.el.addEventListener( 'loaded', () => {
             console.log( 'assets loaded' ) ;
             document.querySelector('#sky').play();
