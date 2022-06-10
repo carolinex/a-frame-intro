@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Video</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Exemplo - Video 360</title>
     <meta name="description" content="Video - A-Frame">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
@@ -59,7 +60,7 @@
       </a-videosphere>
 
       <a-camera>
-        <!-- message asking to click for video to play -->
+        <!-- mensagem inicial -->
         <a-entity
           id="message"
           position="0 0 -1.5"
@@ -67,9 +68,9 @@
                 width: 6;
                 wrapCount: 100;
                 color: black;
-                value: Click or tap to start video">
+                value: Toque para iniciar o vídeo">
         </a-entity>
-        <!-- cursor showing view focus -->
+        <!-- cursor mostrando o foco de visualização -->
         <a-cursor 
           id="cursor" 
           geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02" 
