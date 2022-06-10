@@ -8,7 +8,7 @@
         init: function () {
           this.el.addEventListener( 'loaded', () => {
             console.log( 'assets loaded' ) ;
-            document.querySelector('#video-bridge').play();
+            document.querySelector('#sky').play();
           });
         }
       });
@@ -34,9 +34,9 @@
             A propriedade "timeout" abaixo é o tempo que a interface espera até carregar o vídeo
       -->
       
-        <a-assets asset-loader timeout="10000">
-          <video id="video" autoplay loop="true" src="../videos/falls-low-360.mp4"> </video>
-        </a-assets> 
+        <!-- <a-assets asset-loader timeout="10000">
+          <video id="video" loop="true" src="../videos/falls-low-360.mp4"> </video>
+        </a-assets>  -->
      
 
       <!--
@@ -54,7 +54,7 @@
         <a-sky src="../videos/london-bridge-360.mp4"></a-sky> 
       -->
       <!-- <a-sky src="#video" on-click></a-sky> -->
-      <a-sky src="../videos/london-bridge-360.mp4"></a-sky> 
+      <a-sky id="sky" src="../videos/london-bridge-360.mp4"></a-sky> 
       
     </a-scene>
 
