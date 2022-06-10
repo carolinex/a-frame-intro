@@ -17,7 +17,7 @@
       AFRAME.registerComponent('on-click', {
         init: function () {
           this.el.addEventListener( 'click', () => {
-            console.log('click');
+            console.log('click!');
             document.querySelector('#sky').play();
           });
         }
@@ -28,7 +28,11 @@
     
     <a-scene>
       <a-camera id="camera">
-        <a-cursor geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02;" opacity="0.8" color="#FFF"></a-cursor>
+        <a-cursor 
+          geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02" 
+          color="#FFF"
+          raycaster="objects:.collidable">
+        </a-cursor>
       </a-camera>
       <!--  como o vídeo 360 geralmente demora a carregar,
             definimos o "asset" primeiro, e em seguida chamamos o componente "a-videosphere" 
@@ -56,7 +60,7 @@
         <a-sky src="../videos/london-bridge-360.mp4"></a-sky> 
       -->
       <!-- <a-sky src="#video" on-click></a-sky> -->
-      <a-sky id="sky" src="#video-360" on-click></a-sky> 
+      <a-sky id="sky" src="#video-360" on-click class="collidable"></a-sky> 
       
     </a-scene>
 
