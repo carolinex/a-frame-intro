@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Exemplo - Video 360</title>
-    <meta name="description" content="Video - A-Frame">
+    <title>Exemplo - Vídeo 360</title>
+    <meta name="description" content="360 Video - A-Frame">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
         AFRAME.registerComponent('play-on-click', {
@@ -25,18 +25,8 @@
                 document.querySelector('#message').setAttribute('visible', false);
                 
                 videoEl.play();
-            }
-        });
-        AFRAME.registerComponent('event-interact', {
-            init: function () {
-            this.el.addEventListener( 'mousemove', () => {
-                console.log('move');
-                var videoEl = document.querySelector('#videosphere').getAttribute('material').src;
-                if (!videoEl) { return; }
-                videoEl.play();
-                console.log('start');
-            });
-            }
+            },
+
         });
     </script>
 
@@ -54,7 +44,6 @@
         id="videosphere"
         src="#video-360" 
         play-on-click 
-        event-interact
         class="collidable"
         visible="false">
       </a-videosphere>
