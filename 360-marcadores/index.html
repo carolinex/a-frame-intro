@@ -12,11 +12,13 @@
           let label = this.el.querySelector('.label');
 
           this.el.addEventListener('mouseenter', function (evt) {
+            console.log('in-view', label);
             label.setAttribute("visible", true);
           });
 
 
           this.el.addEventListener('mouseleave', function (evt) {
+            console.log('leave-view', label);
             label.setAttribute("visible", false);
           });
         }
@@ -64,14 +66,21 @@
         rotation="0 -140 0"
         look-at="#camera"
         opacity="0">
-        <a-plane
+        <a-entity
           class="label"
           visible="false"
-          width="5" position="0 0 -15"
-          material="color:black;opacity:1"
-          text="value: New York Skyline; 
-                width:12; color:white; 
-                align:center; anchor:center;">
+          width="5" position="0 0 -10"
+          text="align: center;
+                width: 20;
+                wrapCount: 100;
+                value: New York Skyline">
+        </a-entity>
+        <a-plane
+          class="label"
+          color="black"
+          visible="true"
+          width="5" height="1" position="0 0 -11"
+          material="color:black;opacity:1">
         </a-plane>
         <a-plane
           class="collidable"
