@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script>
+
+      // registra o comportamento 'event-in-view'
+      // quando você adiciona essa propriedade a um elemento do a-frame,
+      // ele irá exibir qualquer elemento interno com a classe 'label'
+      // se o cursor estiver sobre o elemento
+      AFRAME.registerComponent('event-in-view', {
+        init: function () {
+          let label = this.el.querySelector('.label');
+
+          this.el.addEventListener('mouseenter', function (evt) {
+            label.setAttribute("visible", true);
+          });
+
+
+          this.el.addEventListener('mouseleave', function (evt) {
+            label.setAttribute("visible", false);
+          });
+        }
+      });
+
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-camera id="camera">
+        <a-cursor geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02" color="#FFF"></a-cursor>
+      </a-camera>
+      <a-entity
+        event-in-view
+        position="0.5 4 -14"
+        opacity="0">
+        <a-plane
+          class="label"
+          visible="false"
+          width="5" position="0 0 0"
+          color="black"
+          text="value: Brooklyn Bridge; 
+                width:12; color:white; 
+                align:center; anchor:center;">
+        </a-plane>
+        <a-plane
+          width="12" height="8.6"
+          position="0 2 -1"
+          material="color:red;opacity:0.3"
+          visible="false">
+        </a-plane>
+      </a-entity>
+
+      <a-entity
+        event-in-view
+        position="0 3 0"
+        rotation="0 -140 0"
+        look-at="#camera"
+        opacity="0">
+        <a-plane
+          class="label"
+          visible="false"
+          width="5" position="0 0 -15"
+          material="color:black;opacity:1"
+          text="value: New York Skyline; 
+                width:12; color:white; 
+                align:center; anchor:center;">
+        </a-plane>
+        <a-plane
+          width="40" height="10"
+          position="0 0 -25"
+          material="color:red;opacity:0.3"
+          visible="false">
+        </a-plane>
+      </a-entity>
+
+
+      <!-- 
+        rotation="-5 230 0" 
+        rotation="-5 230 0" 
+        a imagem esférica é usada como textura para o elemento "a-sky", 
+        que nada mais é que uma grande esfera cujp centro fica nas coordenadas x=0, y=0, z=0 
+      -->
+      <a-sky src="../images/ponte-360.jpeg"></a-sky>
+      
+    </a-scene>
+
+    
+  </body>
+</html>
