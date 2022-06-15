@@ -14,4 +14,4 @@ Veja mais sobre essa biblioteca no [site do projeto](https://aframe.io/)
 
 - [Introdução ao a-frame](https://aframe.io/docs/1.3.0/introduction/)
 
-- [Como tirar fotos 360 com o celular](https://canaltech.com.br/apps/aplicativos-para-tirar-fotos-panoramicas/)
+- [Como tirar fotos 360 com o celular](https://tecnoblog.net/responde/como-tirar-fotos-em-360-no-android-guia-pratico/)
