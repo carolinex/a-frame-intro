@@ -2,43 +2,69 @@
   <head>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script>
-
-      function labelVisibility(labelElements, state){
-        labelElements.forEach((elem)=>{
-          // console.log('in-view', labelElements);
-          elem.setAttribute("visible", state);
-        });
-      }
+      // function labelVisibility(labelElements, state){
+      //   labelElements.forEach((elem)=>{
+      //     // console.log('in-view', labelElements);
+      //     elem.setAttribute("visible", state);
+      //   });
+      // }
       // registra o comportamento 'event-in-view'
       // quando você adiciona essa propriedade a um elemento do a-frame,
       // ele irá exibir qualquer elemento interno com a classe 'label'
       // se o cursor estiver sobre o elemento
+
       AFRAME.registerComponent('event-in-view', {
-        init: function () {
+        init: function(){
           let labelElements = this.el.querySelectorAll('.label');
 
-          this.el.addEventListener('mouseenter', function (evt) {
-            labelVisibility(labelElements, true);
-          });
+          console.log(labelElements);
+          this.el.addEventListener('mouseenter', function(evt){
+            labelElements.forEach((elem)=>{
+              // console.log('in-view', labelElements);
+              elem.setAttribute("visible", true);
+            });
+          })
 
-
-          this.el.addEventListener('mouseleave', function (evt) {
-            labelVisibility(labelElements, false);
-          });
+          this.el.addEventListener('mouseleave', function(evt){
+            labelElements.forEach((elem)=>{
+              elem.setAttribute('visible', false);
+            });
+          })
         }
-      });
+      })
+      // AFRAME.registerComponent('event-in-view', {
+      //   init: function () {
+      //     let labelElements = this.el.querySelectorAll('.label');
+
+      //     this.el.addEventListener('mouseenter', function (evt) {
+      //       labelVisibility(labelElements, true);
+      //     });
+
+
+      //     this.el.addEventListener('mouseleave', function (evt) {
+      //       labelVisibility(labelElements, false);
+      //     });
+      //   }
+      // });
 
     </script>
   </head>
   <body>
     <a-scene>
-      <a-camera id="camera">
+      <a-camera id="#camera">
+        <a-cursor
+          geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02"
+          color="white"
+          raycaster="objects:.collidable">
+        </a-cursor>
+      </a-camera>
+      <!-- <a-camera id="camera">
         <a-cursor 
           geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.02" 
           color="#FFF"
           raycaster="objects:.collidable">
         </a-cursor>
-      </a-camera>
+      </a-camera> -->
 
       <!-- Marcador 1 -->
       <a-entity
